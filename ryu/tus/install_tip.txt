@@ -1,0 +1,4 @@
+cd TUS/
+python setup.py sdist
+pip install . [--no-cache-dir]
+[or rm -rf ~/.cache/pip/]
