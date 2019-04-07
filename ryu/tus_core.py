@@ -24,6 +24,27 @@ from ryu.lib.packet import packet
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 
+import fnctl
+
+class FileOp(object):
+    def __init__(self, filename):
+        self.fp = open(filename, "ab+")
+
+class NIB(FileOp):
+    filename = "tus/nib.json"
+
+    def __init__(self):
+        super(NIB, self).__init__(self.filename)
+    
+
+class Log(FileOp):
+    filename = "tus/log.txt"
+
+    def __init__(self):
+        super(Log, self).__init__(self.filename)
+
+
+
 class TUSInterface(app_manager.RyuApp):
     VALIDATION = 0x0
     WRITE = 0x1
@@ -50,5 +71,8 @@ class TUSInterface(app_manager.RyuApp):
 
     def barrier(self):
         print('barrier!')
+        pass
+
+    def failure_recov(self):
         pass
         
