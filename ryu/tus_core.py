@@ -24,11 +24,20 @@ from ryu.lib.packet import packet
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 
+import json
+
+
 import fnctl
 
 class FileOp(object):
     def __init__(self, filename):
         self.fp = open(filename, "ab+")
+    
+    def __del__(self):
+        self.fp.close()
+
+    def transaction(self):
+        pass
 
 class NIB(FileOp):
     filename = "tus/nib.json"
@@ -36,6 +45,16 @@ class NIB(FileOp):
     def __init__(self):
         super(NIB, self).__init__(self.filename)
     
+    def read(self, key):
+        fnctl.flock(self.fp, fnctl.LOCK_EX)
+        nib_dict = json.load(fp)
+        fnctl.flock(self.fp, fcntl.LOCK_UN)
+        return nib_dict[key]
+
+    def write(self, d):
+        fnctl.flock(self.fp, fnctl.LOCK_EX)
+        nib_dict = json.load(fp)
+        fnctl.flock(self.fp, fcntl.LOCK_UN)
 
 class Log(FileOp):
     filename = "tus/log.txt"
@@ -43,6 +62,10 @@ class Log(FileOp):
     def __init__(self):
         super(Log, self).__init__(self.filename)
 
+    def read(self, key):
+        #fnctl.flock(self.fp, fnctl.LOCK_EX, 0, 100)
+        #self.fp.seek(0, 0)
+        pass
 
 
 class TUSInterface(app_manager.RyuApp):
