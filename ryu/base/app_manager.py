@@ -43,6 +43,7 @@ from ryu.ofproto import ofproto_protocol
 LOG = logging.getLogger('ryu.base.app_manager')
 
 SERVICE_BRICKS = {}
+TUS_SERVICE = {}
 
 
 def lookup_service_brick(name):
@@ -61,6 +62,9 @@ def register_app(app):
     assert isinstance(app, RyuApp)
     assert app.name not in SERVICE_BRICKS
     SERVICE_BRICKS[app.name] = app
+    from ryu.tus_core import TUS_Interface
+    if isinstance(app, TUS_Interface):
+        TUS_SERVICE[app.name] = app
     register_instance(app)
 
 
@@ -396,6 +400,7 @@ class AppManager(object):
                                                 mod.__name__ ==
                                                 cls.__module__))
         if clses:
+            print(clses)
             return clses[0][1]
         return None
 
