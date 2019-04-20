@@ -120,24 +120,31 @@ class Const(object):
 const = Const()
 
 import time
-class _Log():
+
+class LogItem():
     # TODO
     # match & action
-    def __init__(self):
-        self.timestamp = None
-        self.tx_id = None
-        self.tx_state = None
-        self.match = None
-        self.action = None
-        self.stat = None
+    def __init__(self, timestamp=None, tx_id=None, tx_state=None, 
+                 match=None, action=None, stat=None, volatile=False, 
+                 rw='r', barrier=False):
+        self.timestamp = timestamp
+        self.tx_id = tx_id
+        self.tx_state = tx_state
+        self.match = match
+        self.action = action
+        self.stat = stat
+        self.volatile = volatile
+        self.rw = rw
+        self.barrier = barrier
 
     def from_line(self, line):
         properties = [l.strip() for l in line.split(',')]
         if len(properties) < 3:
             print(properties) # TODO: maybe send an error?
+
         self.timestamp = time.mktime(time.strptime(properties[0], "%Y-%m-%d %H:%M:%S"))
         self.tx_id = int(properties[1])
-        
+
         self.tx_state = const.NONE
         self.barrier = False
         self.volatile = False
@@ -171,6 +178,7 @@ class _Log():
         res = ''
         if self.tx_id == None:
             return res
+
         res += time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.timestamp)) + ','
         res += str(self.tx_id) + ','
         if self.barrier:
@@ -199,7 +207,9 @@ class _Log():
             # TODO
         return res
 
-Log = _Log()
+
+
+Log = LogItem()
 s1 = '2019-04-20 16:12:05,123,START'
 Log.from_line(s1)
 print(Log)
@@ -231,4 +241,20 @@ print(Log)
 s1 = '2019-04-20 16:12:05,123,write,match,action'
 Log.from_line(s1)
 print(Log)
+
+
+l1 = LogItem(timestamp=time.time(), tx_id=135, tx_state=const.READ)
+print(l1)
+
+l1 = LogItem(timestamp=time.time(), tx_id=135, tx_state=const.VALIDATION, volatile=False)
+print(l1)
+
+l1 = LogItem(timestamp=time.time(), tx_id=135, tx_state=const.READ, barrier=True)
+print(l1)
+
+l1 = LogItem(timestamp=time.time(), tx_id=135, tx_state=const.WRITE)
+print(l1)
+
+l1 = LogItem(timestamp=time.time(), tx_id=135, tx_state=const.INACTIVE)
+print(l1)
 

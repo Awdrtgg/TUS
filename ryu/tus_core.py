@@ -61,7 +61,9 @@ def transactional_ex(fn):
         if 'lock_start' in target_args: lock_len = target_args['lock_start']
         if 'lock_whence' in target_args: lock_len = target_args['lock_whence']
         
-        cls_obj.fp = open(cls_obj.filename, "rb+")
+        file_op = 'rb+'
+        if 'file_op' in target_args: file_op = target_args['file_op']
+        cls_obj.fp = open(cls_obj.filename, file_op)
         fnctl.lockf(cls_obj.fp, fnctl.LOCK_EX, lock_len, lock_start, lock_whence)
         
         ret = fn(*args, **kwargs)
@@ -82,7 +84,9 @@ def transactional_sh(fn):
         if 'lock_start' in target_args: lock_start = target_args['lock_start']
         if 'lock_whence' in target_args: lock_whence = target_args['lock_whence']
         
-        cls_obj.fp = open(cls_obj.filename, "rb+")
+        file_op = 'rb+'
+        if 'file_op' in target_args: file_op = target_args['file_op']
+        cls_obj.fp = open(cls_obj.filename, file_op)
         fnctl.lockf(cls_obj.fp, fnctl.LOCK_SH, lock_len, lock_start, lock_whence)
         
         ret = fn(*args, **kwargs)
@@ -133,139 +137,125 @@ class Transaction(object):
     # TODO 
     # everything...
 
-    def __init__(self):
+    def __init__(self, tx_id):
+        self.tx_id = tx_id
         self.state = const.READ
         self.read_set = {}
         self.write_set = {}
         
+    def read(self, key, value):
+        self.read_set[key] = value
     
-class Log(FileOp):
-    class _Log():
-        # TODO
-        # match & action
-        def __init__(self):
-            self.timestamp = None
-            self.tx_id = None
-            self.tx_state = None
+    def write(self, key, value):
+        self.write_set[key] = value
+    
+
+class LogItem():
+    # TODO
+    # match & action
+    def __init__(self, timestamp=None, tx_id=None, tx_state=None, 
+                 match=None, action=None, stat=None, volatile=False, 
+                 rw='r', barrier=False):
+        self.timestamp = timestamp
+        self.tx_id = tx_id
+        self.tx_state = tx_state
+        self.match = match
+        self.action = action
+        self.stat = stat
+        self.volatile = volatile
+        self.rw = rw
+        self.barrier = barrier
+
+    def from_line(self, line):
+        properties = [l.strip() for l in line.split(',')]
+        if len(properties) < 3:
+            print(properties) # TODO: maybe send an error?
+
+        self.timestamp = time.mktime(time.strptime(properties[0], "%Y-%m-%d %H:%M:%S"))
+        self.tx_id = int(properties[1])
+
+        self.tx_state = const.NONE
+        self.barrier = False
+        self.volatile = False
+        self.rw = None
+        if len(properties) <= 4:
+            self.tx_state = properties[2]
+            if properties[2] == 'START':
+                self.tx_state = const.READ
+            elif properties[2] == 'VALIDATION':
+                self.tx_state = const.VALIDATION
+                if properties[3] == 'VOLATILE':
+                    self.volatile = True
+            elif properties[2] == 'WRITE':
+                self.tx_state = const.WRITE
+            elif properties[2] == 'INACTIVE':
+                self.tx_state = const.INACTIVE
+            elif properties[2] == 'BARRIER':
+                self.tx_state = const.READ
+                self.barrier = True
+        else:
+            # TODO
+            if properties[2] == 'read':
+                self.rw = 'r'
+            elif properties[2] == 'write':
+                self.rw = 'w'
             self.match = None
             self.action = None
             self.stat = None
 
-        def from_line(self, line):
-            properties = [l.strip() for l in line.split(',')]
-            if len(properties) < 3:
-                print(properties) # TODO: maybe send an error?
-
-            self.timestamp = time.mktime(time.strptime(properties[0], "%Y-%m-%d %H:%M:%S"))
-            self.tx_id = int(properties[1])
-
-            self.tx_state = const.NONE
-            self.barrier = False
-            self.volatile = False
-            self.rw = None
-            if len(properties) <= 4:
-                self.tx_state = properties[2]
-                if properties[2] == 'START':
-                    self.tx_state = const.READ
-                elif properties[2] == 'VALIDATION':
-                    self.tx_state = const.VALIDATION
-                    if properties[3] == 'VOLATILE':
-                        self.volatile = True
-                elif properties[2] == 'WRITE':
-                    self.tx_state = const.WRITE
-                elif properties[2] == 'INACTIVE':
-                    self.tx_state = const.INACTIVE
-                elif properties[2] == 'BARRIER':
-                    self.tx_state = const.READ
-                    self.barrier = True
-            else:
-                # TODO
-                if properties[2] == 'read':
-                    self.rw = 'r'
-                elif properties[2] == 'write':
-                    self.rw = 'w'
-                self.match = None
-                self.action = None
-                self.stat = None
-
-        def __str__(self):
-            res = ''
-            if self.tx_id == None:
-                return res
-
-            res += time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.timestamp)) + ','
-            res += str(self.tx_id) + ','
-            if self.barrier:
-                res += 'BARRIER'
-            elif self.tx_state == const.READ:
-                if self.match == None:
-                    res += 'START'
-                else:
-                    pass # TODO
-            elif self.tx_state == const.VALIDATION:
-                res += 'VALIDATION' + ','
-                if self.volatile:
-                    res += 'VOLATILE'
-                else:
-                    res += 'PERSISTENT'
-            elif self.tx_state == const.WRITE:
-                res += 'WRITE'
-            elif self.tx_state == const.INACTIVE:
-                res += 'INACTIVE'
-            else:
-                if self.rw == 'r':
-                    res += 'read'
-                elif self.rw == 'w':
-                    res += 'write'
-                res += ','
-                # TODO
+    def __str__(self):
+        res = ''
+        if self.tx_id == None:
             return res
 
+        res += time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(self.timestamp)) + ','
+        res += str(self.tx_id) + ','
+        if self.barrier:
+            res += 'BARRIER'
+        elif self.tx_state == const.READ:
+            if self.match == None:
+                res += 'START'
+            else:
+                pass # TODO
+        elif self.tx_state == const.VALIDATION:
+            res += 'VALIDATION' + ','
+            if self.volatile:
+                res += 'VOLATILE'
+            else:
+                res += 'PERSISTENT'
+        elif self.tx_state == const.WRITE:
+            res += 'WRITE'
+        elif self.tx_state == const.INACTIVE:
+            res += 'INACTIVE'
+        else:
+            if self.rw == 'r':
+                res += 'read'
+            elif self.rw == 'w':
+                res += 'write'
+            res += ','
+            # TODO
+        return res
 
+
+
+class Log(FileOp):
     def __init__(self, filename="tus/log.txt"):
         super(Log, self).__init__(self.filename)
 
-    def _line_to_tx(self, line):
-        # TODO: exception!
-        t = TX(line)
-        return const.TX_LEN * t.tx_id
+    def log(self, Log, file_op='ab+'):
+        self.fp.write(str(Log) + '\n')
 
-    def lock_info(self, tx_id):
-        # tx_id <= 0 refers to lock the whole file
-        if (tx_id <= 0):
-            ret = {'lock_len': 0, 'lock_start':0, 'lock_whence':0}
-        else:
-            ret = {'lock_len': const.TX_LEN, 'lock_start': const.TX_LEN * tx_id, 'lock_whence':0}
-        return ret
-
-    @transactional_sh
-    def read(self, tx_id, lock_len=0, lock_start=0, lock_whence=0):
-        self.fp.seek(const.TX_LEN * tx_id, os.SEEK_SET)
-        line = self.fp.readline()
-        tx = TX(line)
-        return tx
-
-    @transactional_sh
-    def new(self, lock_len=0, lock_start=0, lock_whence=0):
-        # TODO
-        # decide the format of the first line
-        self.fp.seek(0, os.SEEK_SET)
-        line = self.fp.readline()
-        max_id = int(line) + 1 # note the first line format
-        tx.tx_id = max_id
-
-        self.fp.seek(0, os.SEEK_SET)
-        log_stat = '%49d,%49d\n' % (max_id, max_id) # note the first line format
-        self.fp.write(log_stat)
-        
-        self.fp.seek(const.TX_LEN * max_id, os.SEEK_SET)
-        self.fp.write(str(tx))
+    def get_max_id(self):
+        max_id = 0
+        for line in self.fp:
+            l = line.split(',')
+            if len(l) > 0:
+                i = int(l[1])
+                if max_id < i:
+                    max_id = i
         return max_id
-    
-    @transactional_sh
-    def update(self, tx, lock_len=0, lock_start=0, lock_whence=0):
-        self.fp.seek(const.TX_LEN * tx.tx_id)
-        self.fp.write(str(tx))
+        
+
 
 
 class TUSInterface(app_manager.RyuApp):
@@ -273,26 +263,54 @@ class TUSInterface(app_manager.RyuApp):
         super(TUSInterface, self).__init__(*args, **kwargs)
         self.nib = NIB()
         self.log = Log()
+        self.tx = {}
 
     def transactions(self):
         print('transaction!')
-        return self.log.new()
+        tx_id = self.log.get_max_id() + 1
+        self.tx[tx_id] = Transaction(tx_id)
+        self.log.log(
+            LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=const.READ)
+        )
+        return tx_id
     
-    def tx_read(self, switch, match, op):
+    def tx_read(self, tx_id, switch, match, op):
         print('tx_read!' + '\n' + str(switch) + '\n' + str(match) + '\n' + str(op))
-        pass
 
-    def tx_write(self, switch, match, action):
+    def tx_write(self, tx_id, switch, match, action):
         print('tx_write!' + '\n' + str(switch) + '\n' + str(match) + '\n' + str(action))
-        pass
     
-    def tx_commit(self, volatile):
+    def tx_commit(self, tx_id, volatile):
         print('tx_commit!' + '\n' + str(volatile))
-        pass
+        self.tx[tx_id].state = const.VALIDATION
+        self.log.log(
+            LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state,volatile=volatile)
+        )
+        ### do validation
 
-    def barrier(self):
+        ###
+        self.tx[tx_id].state = const.WRITE
+        self.log.log(
+            LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state)
+        )
+        ### do writing
+
+        ###
+        self.tx[tx_id].state = const.INACTIVE
+        self.log.log(
+            LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state)
+        )
+        ### do clean
+
+        ###
+        del self.tx[tx_id]
+        return True
+
+    def barrier(self, tx_id):
         print('barrier!')
-        pass
+        self.log.log(
+            LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state, barrier=True)
+        )
 
     def failure_recov(self):
         pass
