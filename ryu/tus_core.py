@@ -24,7 +24,7 @@ from ryu.lib.packet import packet
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
 
-import fnctl
+import fcntl
 import inspect
 import json
 import time
@@ -257,7 +257,6 @@ class Log(FileOp):
         
 
 
-
 class TUSInterface(app_manager.RyuApp):
     def __init__(self, *args, **kwargs):
         super(TUSInterface, self).__init__(*args, **kwargs)
@@ -273,7 +272,7 @@ class TUSInterface(app_manager.RyuApp):
             LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=const.READ)
         )
         return tx_id
-    
+
     def tx_read(self, tx_id, switch, match, op):
         print('tx_read!' + '\n' + str(switch) + '\n' + str(match) + '\n' + str(op))
 
@@ -287,7 +286,7 @@ class TUSInterface(app_manager.RyuApp):
             LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state,volatile=volatile)
         )
         ### do validation
-
+        print(app_manager.TUS_SERVICE)
         ###
         self.tx[tx_id].state = const.WRITE
         self.log.log(

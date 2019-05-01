@@ -62,8 +62,8 @@ def register_app(app):
     assert isinstance(app, RyuApp)
     assert app.name not in SERVICE_BRICKS
     SERVICE_BRICKS[app.name] = app
-    from ryu.tus_core import TUS_Interface
-    if isinstance(app, TUS_Interface):
+    from ryu.tus.tus_manager import TusApp
+    if isinstance(app, TusApp):
         TUS_SERVICE[app.name] = app
     register_instance(app)
 
