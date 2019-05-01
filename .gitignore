@@ -12,6 +12,7 @@ GSYMS
 .venv/
 .tox/
 .coverage
+.eggs/
 covhtml/
 coverage.xml
 nosetests.xml
