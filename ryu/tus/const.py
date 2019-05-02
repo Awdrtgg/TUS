@@ -9,6 +9,7 @@ class Const(object):
         self.VALIDATION = 0x2
         self.WRITE = 0x3
         self.INACTIVE = 0x4
+        self.DIV = '||'
 
     def __setattr__(self, name, value):
         if name in self.__dict__:

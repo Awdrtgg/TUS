@@ -6,7 +6,7 @@ from ryu.controller.handler import MAIN_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.ofproto import ofproto_v1_0
 
-class ISOtest1(tus_manager.TusApp):
+class ISOtest2(tus_manager.TusApp):
 #class ISOtest2(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_0.OFP_VERSION]
 
@@ -36,5 +36,7 @@ class ISOtest1(tus_manager.TusApp):
         print(type(ofp_parser), ofp_parser)
         print(type(actions[0]), actions[0])
         print(type(out), out)
-
-        self.tx_commit(1, 0)
+        print('\n')
+        tx_id = self.transactions()
+        self.tx_commit(tx_id, volatile=True)
+        print('\n\n')

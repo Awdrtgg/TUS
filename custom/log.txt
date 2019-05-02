@@ -1,40 +1,292 @@
-2019-05-01 16:11:25,1,START
-2019-05-01 16:11:25,1,VALIDATION,VOLATILE
-2019-05-01 16:11:25,1,WRITE
-2019-05-01 16:11:25,1,INACTIVE
-2019-05-01 16:11:25,2,START
-2019-05-01 16:11:25,2,VALIDATION,VOLATILE
-2019-05-01 16:11:25,2,WRITE
-2019-05-01 16:11:25,2,INACTIVE
-2019-05-01 16:11:26,3,START
-2019-05-01 16:11:26,3,VALIDATION,VOLATILE
-2019-05-01 16:11:26,3,WRITE
-2019-05-01 16:11:26,3,INACTIVE
-2019-05-01 16:11:26,4,START
-2019-05-01 16:11:26,4,VALIDATION,VOLATILE
-2019-05-01 16:11:26,4,WRITE
-2019-05-01 16:11:26,4,INACTIVE
-2019-05-01 16:11:27,5,START
-2019-05-01 16:11:27,5,VALIDATION,VOLATILE
-2019-05-01 16:11:27,5,WRITE
-2019-05-01 16:11:27,5,INACTIVE
-2019-05-01 16:11:27,6,START
-2019-05-01 16:11:27,6,VALIDATION,VOLATILE
-2019-05-01 16:11:27,6,WRITE
-2019-05-01 16:11:27,6,INACTIVE
-2019-05-01 16:11:30,7,START
-2019-05-01 16:11:30,7,VALIDATION,VOLATILE
-2019-05-01 16:11:30,7,WRITE
-2019-05-01 16:11:30,7,INACTIVE
-2019-05-01 16:11:30,8,START
-2019-05-01 16:11:30,8,VALIDATION,VOLATILE
-2019-05-01 16:11:30,8,WRITE
-2019-05-01 16:11:30,8,INACTIVE
-2019-05-01 16:11:30,9,START
-2019-05-01 16:11:30,9,VALIDATION,VOLATILE
-2019-05-01 16:11:30,9,WRITE
-2019-05-01 16:11:30,9,INACTIVE
-2019-05-01 16:11:30,10,START
-2019-05-01 16:11:30,10,VALIDATION,VOLATILE
-2019-05-01 16:11:30,10,WRITE
-2019-05-01 16:11:30,10,INACTIVE
+2019-05-01 16:11:25||1||START
+2019-05-01 16:11:25||1||VALIDATION||VOLATILE
+2019-05-01 16:11:25||1||WRITE
+2019-05-01 16:11:25||1||INACTIVE
+2019-05-01 16:11:25||2||START
+2019-05-01 16:11:25||2||VALIDATION||VOLATILE
+2019-05-01 16:11:25||2||WRITE
+2019-05-01 16:11:25||2||INACTIVE
+2019-05-01 16:11:26||3||START
+2019-05-01 16:11:26||3||VALIDATION||VOLATILE
+2019-05-01 16:11:26||3||WRITE
+2019-05-01 16:11:26||3||INACTIVE
+2019-05-01 16:11:26||4||START
+2019-05-01 16:11:26||4||VALIDATION||VOLATILE
+2019-05-01 16:11:26||4||WRITE
+2019-05-01 16:11:26||4||INACTIVE
+2019-05-01 16:11:27||5||START
+2019-05-01 16:11:27||5||VALIDATION||VOLATILE
+2019-05-01 16:11:27||5||WRITE
+2019-05-01 16:11:27||5||INACTIVE
+2019-05-01 16:11:27||6||START
+2019-05-01 16:11:27||6||VALIDATION||VOLATILE
+2019-05-01 16:11:27||6||WRITE
+2019-05-01 16:11:27||6||INACTIVE
+2019-05-01 16:11:30||7||START
+2019-05-01 16:11:30||7||VALIDATION||VOLATILE
+2019-05-01 16:11:30||7||WRITE
+2019-05-01 16:11:30||7||INACTIVE
+2019-05-01 16:11:30||8||START
+2019-05-01 16:11:30||8||VALIDATION||VOLATILE
+2019-05-01 16:11:30||8||WRITE
+2019-05-01 16:11:30||8||INACTIVE
+2019-05-01 16:11:30||9||START
+2019-05-01 16:11:30||9||VALIDATION||VOLATILE
+2019-05-01 16:11:30||9||WRITE
+2019-05-01 16:11:30||9||INACTIVE
+2019-05-01 16:11:30||10||START
+2019-05-01 16:11:30||10||VALIDATION||VOLATILE
+2019-05-01 16:11:30||10||WRITE
+2019-05-01 16:11:30||10||INACTIVE
+2019-05-01 16:30:10||11||START
+2019-05-01 16:30:10||11||VALIDATION||VOLATILE
+2019-05-01 16:30:10||11||WRITE
+2019-05-01 16:30:10||12||START
+2019-05-01 16:30:10||12||VALIDATION||VOLATILE
+2019-05-01 16:30:10||12||WRITE
+2019-05-01 16:30:10||11||INACTIVE
+2019-05-01 16:30:10||13||START
+2019-05-01 16:30:10||13||VALIDATION||VOLATILE
+2019-05-01 16:30:10||13||WRITE
+2019-05-01 16:30:10||12||INACTIVE
+2019-05-01 16:30:10||14||START
+2019-05-01 16:30:10||14||VALIDATION||VOLATILE
+2019-05-01 16:30:10||14||WRITE
+2019-05-01 16:30:10||13||INACTIVE
+2019-05-01 16:30:10||15||START
+2019-05-01 16:30:10||15||VALIDATION||VOLATILE
+2019-05-01 16:30:10||15||WRITE
+2019-05-01 16:30:10||14||INACTIVE
+2019-05-01 16:30:10||16||START
+2019-05-01 16:30:10||16||VALIDATION||VOLATILE
+2019-05-01 16:30:10||16||WRITE
+2019-05-01 16:30:10||15||INACTIVE
+2019-05-01 16:30:10||17||START
+2019-05-01 16:30:10||17||VALIDATION||VOLATILE
+2019-05-01 16:30:10||17||WRITE
+2019-05-01 16:30:10||16||INACTIVE
+2019-05-01 16:30:10||18||START
+2019-05-01 16:30:10||18||VALIDATION||VOLATILE
+2019-05-01 16:30:10||18||WRITE
+2019-05-01 16:30:10||17||INACTIVE
+2019-05-01 16:30:15||19||START
+2019-05-01 16:30:15||19||VALIDATION||VOLATILE
+2019-05-01 16:30:15||19||WRITE
+2019-05-01 16:30:10||18||INACTIVE
+2019-05-01 16:30:15||20||START
+2019-05-01 16:30:15||20||VALIDATION||VOLATILE
+2019-05-01 16:30:15||20||WRITE
+2019-05-01 16:30:15||19||INACTIVE
+2019-05-01 16:30:15||21||START
+2019-05-01 16:30:15||21||VALIDATION||VOLATILE
+2019-05-01 16:30:15||21||WRITE
+2019-05-01 16:30:15||20||INACTIVE
+2019-05-01 16:30:15||22||START
+2019-05-01 16:30:15||22||VALIDATION||VOLATILE
+2019-05-01 16:30:15||22||WRITE
+2019-05-01 16:30:15||21||INACTIVE
+2019-05-01 16:30:18||23||START
+2019-05-01 16:30:18||23||VALIDATION||VOLATILE
+2019-05-01 16:30:18||23||WRITE
+2019-05-01 16:30:15||22||INACTIVE
+2019-05-01 16:30:18||24||START
+2019-05-01 16:30:18||24||VALIDATION||VOLATILE
+2019-05-01 16:30:18||24||WRITE
+2019-05-01 16:30:18||23||INACTIVE
+2019-05-01 16:30:18||25||START
+2019-05-01 16:30:18||25||VALIDATION||VOLATILE
+2019-05-01 16:30:18||25||WRITE
+2019-05-01 16:30:18||24||INACTIVE
+2019-05-01 16:30:18||26||START
+2019-05-01 16:30:18||26||VALIDATION||VOLATILE
+2019-05-01 16:30:18||26||WRITE
+2019-05-01 16:30:18||25||INACTIVE
+2019-05-01 16:30:45||27||START
+2019-05-01 16:30:45||27||VALIDATION||VOLATILE
+2019-05-01 16:30:45||27||WRITE
+2019-05-01 16:30:18||26||INACTIVE
+2019-05-01 16:30:45||28||START
+2019-05-01 16:30:46||28||VALIDATION||VOLATILE
+2019-05-01 16:30:46||28||WRITE
+2019-05-01 16:30:45||27||INACTIVE
+2019-05-01 16:30:48||29||START
+2019-05-01 16:30:48||29||VALIDATION||VOLATILE
+2019-05-01 16:30:48||29||WRITE
+2019-05-01 16:30:46||28||INACTIVE
+2019-05-01 16:30:48||30||START
+2019-05-01 16:30:48||30||VALIDATION||VOLATILE
+2019-05-01 16:30:48||30||WRITE
+2019-05-01 16:30:48||29||INACTIVE
+2019-05-01 16:31:43||31||START
+2019-05-01 16:31:43||31||VALIDATION||VOLATILE
+2019-05-01 16:31:43||31||WRITE
+2019-05-01 16:30:48||30||INACTIVE
+2019-05-01 16:31:43||32||START
+2019-05-01 16:31:43||32||VALIDATION||VOLATILE
+2019-05-01 16:31:43||32||WRITE
+2019-05-01 16:31:43||31||INACTIVE
+2019-05-01 16:31:45||33||START
+2019-05-01 16:31:45||33||VALIDATION||VOLATILE
+2019-05-01 16:31:45||33||WRITE
+2019-05-01 16:31:43||32||INACTIVE
+2019-05-01 16:31:45||34||START
+2019-05-01 16:31:45||34||VALIDATION||VOLATILE
+2019-05-01 16:31:45||34||WRITE
+2019-05-01 16:31:45||33||INACTIVE
+2019-05-01 16:33:33||35||START
+2019-05-01 16:33:33||35||VALIDATION||VOLATILE
+2019-05-01 16:33:33||35||WRITE
+2019-05-01 16:31:45||34||INACTIVE
+2019-05-01 16:33:33||36||START
+2019-05-01 16:33:33||36||VALIDATION||VOLATILE
+2019-05-01 16:33:33||36||WRITE
+2019-05-01 16:33:33||35||INACTIVE
+2019-05-01 16:33:40||37||START
+2019-05-01 16:33:40||37||VALIDATION||VOLATILE
+2019-05-01 16:33:40||37||WRITE
+2019-05-01 16:33:33||36||INACTIVE
+2019-05-01 16:33:40||38||START
+2019-05-01 16:33:40||38||VALIDATION||VOLATILE
+2019-05-01 16:33:40||38||WRITE
+2019-05-01 16:33:40||37||INACTIVE
+2019-05-01 16:37:25||39||START
+2019-05-01 16:37:25||39||VALIDATION||VOLATILE
+2019-05-01 16:37:25||39||WRITE
+2019-05-01 16:33:40||38||INACTIVE
+2019-05-01 16:37:25||40||START
+2019-05-01 16:37:25||40||VALIDATION||VOLATILE
+2019-05-01 16:37:25||40||WRITE
+2019-05-01 16:37:25||39||INACTIVE
+2019-05-01 16:37:41||41||START
+2019-05-01 16:37:41||41||VALIDATION||VOLATILE
+2019-05-01 16:37:41||41||WRITE
+2019-05-01 16:37:25||40||INACTIVE
+2019-05-01 16:37:41||42||START
+2019-05-01 16:37:41||42||VALIDATION||VOLATILE
+2019-05-01 16:37:41||42||WRITE
+2019-05-01 16:37:41||41||INACTIVE
+2019-05-01 16:45:04||43||START
+2019-05-01 16:45:04||43||VALIDATION||VOLATILE
+2019-05-01 16:45:04||43||WRITE
+2019-05-01 16:37:41||42||INACTIVE
+2019-05-01 16:45:04||44||START
+2019-05-01 16:45:04||44||VALIDATION||VOLATILE
+2019-05-01 16:45:04||44||WRITE
+2019-05-01 16:45:04||43||INACTIVE
+2019-05-01 16:45:20||45||START
+2019-05-01 16:45:20||45||VALIDATION||VOLATILE
+2019-05-01 16:45:20||45||WRITE
+2019-05-01 16:45:04||44||INACTIVE
+2019-05-01 16:45:20||46||START
+2019-05-01 16:45:20||46||VALIDATION||VOLATILE
+2019-05-01 16:45:20||46||WRITE
+2019-05-01 16:45:20||45||INACTIVE
+2019-05-01 16:45:20||46||INACTIVE
+2019-05-02 18:34:14||47||START
+2019-05-02 18:34:14||48||START
+2019-05-02 18:34:14||49||START
+2019-05-02 18:40:37||50||START
+2019-05-02 18:40:37||51||START
+2019-05-02 18:40:37||52||START
+2019-05-02 18:41:23||53||START
+2019-05-02 18:41:23||53||read||{"id": 1, "address": ["127.0.0.1", 45478]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:41:23||54||START
+2019-05-02 18:41:23||54||read||{"id": 3, "address": ["127.0.0.1", 45480]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:41:23||55||START
+2019-05-02 18:41:23||55||read||{"id": 2, "address": ["127.0.0.1", 45482]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:44:25||56||START
+2019-05-02 18:44:25||56||read||{"address": ["127.0.0.1", 46558], "id": 1}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:44:25||56||write||{"address": ["127.0.0.1", 46558], "id": 1}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:44:25||57||START
+2019-05-02 18:44:25||57||read||{"address": ["127.0.0.1", 46560], "id": 3}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:44:25||57||write||{"address": ["127.0.0.1", 46560], "id": 3}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:44:25||58||START
+2019-05-02 18:44:25||58||read||{"address": ["127.0.0.1", 46562], "id": 2}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:44:25||58||write||{"address": ["127.0.0.1", 46562], "id": 2}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:47:25||59||START
+2019-05-02 18:47:25||59||read||{"id": 1, "address": ["127.0.0.1", 46652]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "type": 1}}||
+2019-05-02 18:47:25||60||START
+2019-05-02 18:47:25||60||read||{"id": 3, "address": ["127.0.0.1", 46654]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "type": 1}}||
+2019-05-02 18:47:25||61||START
+2019-05-02 18:47:25||61||read||{"id": 2, "address": ["127.0.0.1", 46656]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "type": 1}}||
+2019-05-02 18:48:33||62||START
+2019-05-02 18:48:33||62||read||{"address": ["127.0.0.1", 47054], "id": 1}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:48:33||63||START
+2019-05-02 18:48:33||63||read||{"address": ["127.0.0.1", 47056], "id": 3}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:48:33||64||START
+2019-05-02 18:48:33||64||read||{"address": ["127.0.0.1", 47058], "id": 2}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}]}}||
+2019-05-02 18:49:58||65||START
+2019-05-02 18:49:58||65||read||{"address": ["127.0.0.1", 47540], "id": 1}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}], "type": 1, "length": 26}}||
+2019-05-02 18:49:58||66||START
+2019-05-02 18:49:58||66||read||{"address": ["127.0.0.1", 47542], "id": 3}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}], "type": 1, "length": 26}}||
+2019-05-02 18:49:58||67||START
+2019-05-02 18:49:58||67||read||{"address": ["127.0.0.1", 47544], "id": 2}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "mask": None, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": None, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": None, "field": "mpls_label"}}], "type": 1, "length": 26}}||
+2019-05-02 18:50:43||68||START
+2019-05-02 18:50:43||68||read||{"address": ["127.0.0.1", 47798], "id": 1}||{"OFPMatch": {"type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "length": 26}}||
+2019-05-02 18:50:43||69||START
+2019-05-02 18:50:43||69||read||{"address": ["127.0.0.1", 47800], "id": 3}||{"OFPMatch": {"type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "length": 26}}||
+2019-05-02 18:50:43||70||START
+2019-05-02 18:50:43||70||read||{"address": ["127.0.0.1", 47802], "id": 2}||{"OFPMatch": {"type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}], "length": 26}}||
+2019-05-02 18:51:26||71||START
+2019-05-02 18:51:26||71||read||{"address": ["127.0.0.1", 48050], "id": 1}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:51:26||72||START
+2019-05-02 18:51:26||72||read||{"address": ["127.0.0.1", 48052], "id": 3}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:51:26||73||START
+2019-05-02 18:51:26||73||read||{"address": ["127.0.0.1", 48054], "id": 2}||{"OFPMatch": {"oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "length": 26, "type": 1}}||
+2019-05-02 18:52:35||74||START
+2019-05-02 18:52:35||74||read||{"address": ["127.0.0.1", 48458], "id": 1}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"field": "in_port", "value": 1, "mask": None}}, {"OXMTlv": {"field": "eth_type", "value": 34887, "mask": None}}, {"OXMTlv": {"field": "mpls_label", "value": 80, "mask": None}}]}}||
+2019-05-02 18:52:35||75||START
+2019-05-02 18:52:35||75||read||{"address": ["127.0.0.1", 48460], "id": 3}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"field": "in_port", "value": 1, "mask": None}}, {"OXMTlv": {"field": "eth_type", "value": 34887, "mask": None}}, {"OXMTlv": {"field": "mpls_label", "value": 80, "mask": None}}]}}||
+2019-05-02 18:52:35||76||START
+2019-05-02 18:52:35||76||read||{"address": ["127.0.0.1", 48462], "id": 2}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"field": "in_port", "value": 1, "mask": None}}, {"OXMTlv": {"field": "eth_type", "value": 34887, "mask": None}}, {"OXMTlv": {"field": "mpls_label", "value": 80, "mask": None}}]}}||
+2019-05-02 18:56:47||77||START
+2019-05-02 18:56:47||77||read||{"id": 1, "address": ["127.0.0.1", 49968]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}]}}||
+2019-05-02 18:56:47||78||START
+2019-05-02 18:56:47||78||read||{"id": 3, "address": ["127.0.0.1", 49970]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}]}}||
+2019-05-02 18:56:47||79||START
+2019-05-02 18:56:47||79||read||{"id": 2, "address": ["127.0.0.1", 49972]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}]}}||
+2019-05-02 18:57:45||80||START
+2019-05-02 18:57:45||80||read||{"id": 1, "address": ["127.0.0.1", 50312]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "type": 1}}||
+2019-05-02 18:57:45||81||START
+2019-05-02 18:57:45||81||read||{"id": 3, "address": ["127.0.0.1", 50314]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "type": 1}}||
+2019-05-02 18:57:45||82||START
+2019-05-02 18:57:45||82||read||{"id": 2, "address": ["127.0.0.1", 50316]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "field": "in_port", "mask": None}}, {"OXMTlv": {"value": 34887, "field": "eth_type", "mask": None}}, {"OXMTlv": {"value": 80, "field": "mpls_label", "mask": None}}], "type": 1}}||
+2019-05-02 19:02:00||83||START
+2019-05-02 19:02:00||83||read||{"id": 1, "address": ["127.0.0.1", 51830]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:02:00||84||START
+2019-05-02 19:02:00||84||read||{"id": 3, "address": ["127.0.0.1", 51832]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:02:00||85||START
+2019-05-02 19:02:00||85||read||{"id": 2, "address": ["127.0.0.1", 51834]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": None, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": None, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": None, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:02:13||86||START
+2019-05-02 19:02:13||86||read||{"id": 1, "address": ["127.0.0.1", 51902]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": null, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": null, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": null, "field": "mpls_label"}}], "type": 1}}||
+2019-05-02 19:02:13||87||START
+2019-05-02 19:02:13||87||read||{"id": 3, "address": ["127.0.0.1", 51904]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": null, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": null, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": null, "field": "mpls_label"}}], "type": 1}}||
+2019-05-02 19:02:13||88||START
+2019-05-02 19:02:13||88||read||{"id": 2, "address": ["127.0.0.1", 51906]}||{"OFPMatch": {"length": 26, "oxm_fields": [{"OXMTlv": {"value": 1, "mask": null, "field": "in_port"}}, {"OXMTlv": {"value": 34887, "mask": null, "field": "eth_type"}}, {"OXMTlv": {"value": 80, "mask": null, "field": "mpls_label"}}], "type": 1}}||
+2019-05-02 19:07:32||89||START
+2019-05-02 19:07:32||89||read||{"id": 1, "address": ["127.0.0.1", 53814]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:07:32||89||write||{"id": 1, "address": ["127.0.0.1", 53814]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:07:32||90||START
+2019-05-02 19:07:32||90||read||{"id": 3, "address": ["127.0.0.1", 53816]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:07:32||90||write||{"id": 3, "address": ["127.0.0.1", 53816]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:07:32||91||START
+2019-05-02 19:07:32||91||read||{"id": 2, "address": ["127.0.0.1", 53818]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:07:32||91||write||{"id": 2, "address": ["127.0.0.1", 53818]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||92||START
+2019-05-02 19:08:29||92||read||{"id": 1, "address": ["127.0.0.1", 54138]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||92||write||{"id": 1, "address": ["127.0.0.1", 54138]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||93||START
+2019-05-02 19:08:29||93||read||{"id": 3, "address": ["127.0.0.1", 54140]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||93||write||{"id": 3, "address": ["127.0.0.1", 54140]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||94||START
+2019-05-02 19:08:29||94||read||{"id": 2, "address": ["127.0.0.1", 54142]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:08:29||94||write||{"id": 2, "address": ["127.0.0.1", 54142]}||{"OFPMatch": {"length": 26, "type": 1, "oxm_fields": [{"OXMTlv": {"mask": null, "field": "in_port", "value": 1}}, {"OXMTlv": {"mask": null, "field": "eth_type", "value": 34887}}, {"OXMTlv": {"mask": null, "field": "mpls_label", "value": 80}}]}}||
+2019-05-02 19:12:35||95||START
+2019-05-02 19:12:35||95||read||{"id": 1, "address": ["127.0.0.1", 55596]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
+2019-05-02 19:12:35||95||write||{"id": 1, "address": ["127.0.0.1", 55596]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
+2019-05-02 19:12:35||96||START
+2019-05-02 19:12:35||96||read||{"id": 3, "address": ["127.0.0.1", 55598]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
+2019-05-02 19:12:35||96||write||{"id": 3, "address": ["127.0.0.1", 55598]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
+2019-05-02 19:12:35||97||START
+2019-05-02 19:12:35||97||read||{"id": 2, "address": ["127.0.0.1", 55600]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
+2019-05-02 19:12:35||97||write||{"id": 2, "address": ["127.0.0.1", 55600]}||{"OFPMatch": {"type": 1, "length": 26, "oxm_fields": [{"OXMTlv": {"field": "in_port", "mask": null, "value": 1}}, {"OXMTlv": {"field": "eth_type", "mask": null, "value": 34887}}, {"OXMTlv": {"field": "mpls_label", "mask": null, "value": 80}}]}}||[OFPActionPopMpls(ethertype=2048,len=8,type=20), OFPActionOutput(len=16,max_len=0,port=2,type=0)]
