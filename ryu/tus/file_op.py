@@ -71,6 +71,8 @@ class NIB(FileOp):
 
     @transactional_sh
     def read(self, key):
+        # TODO 
+        # support complex key match
         data = json.load(self.fp)
         if key in data:
             return data[key]

@@ -7,15 +7,14 @@ class LogItem():
     # TODO
     # match & action
     def __init__(self, timestamp=None, tx_id=None, tx_state=None, 
-                 dp=None, match=None, action=None, stat=None, 
+                 dp=None, match=None, action_or_stat=None, 
                  volatile=False, rw='r', barrier=False, dpset=None):
         self.timestamp = timestamp
         self.tx_id = tx_id
         self.tx_state = tx_state
         self.dp = dp
         self.match = match
-        self.action = action
-        self.stat = stat
+        self.action_or_stat = action_or_stat
         self.volatile = volatile
         self.rw = rw
         self.barrier = barrier
@@ -65,8 +64,7 @@ class LogItem():
             
             self.match = self.dp.ofproto_parser.OFPMatch(json.loads(properties[4]))
             # TODO
-            self.action = None
-            self.stat = None
+            self.action_or_stat = json.loads(properties[5])
         
         return self
 
@@ -80,7 +78,7 @@ class LogItem():
         if self.barrier:
             res += 'BARRIER'
         elif self.tx_state == const.READ:
-            if self.match == None:
+            if self.match == None and self.action_or_stat == None:
                 res += 'START'
             else:
                 if self.rw == 'r':
@@ -92,8 +90,7 @@ class LogItem():
                 res += const.DIV
                 res += str(json.dumps(self.match.to_jsondict()))
                 res += const.DIV
-                # TODO: actions
-                res += str(self.action)
+                res += str(json.dumps(self.action_or_stat))
                 
         elif self.tx_state == const.VALIDATION:
             res += 'VALIDATION' + const.DIV
