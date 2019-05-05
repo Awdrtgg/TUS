@@ -9,7 +9,8 @@ def intersect_set(set1, set2):
     res = []
     for s1 in set1_flat:
         for s2 in set2_flat:
-            if s1 == s2:
+            if s1['dp'].id == s2['dp'].id:
+            #if s1 == s2:
                 res.append(s1)
     return res
 
@@ -21,20 +22,14 @@ class Transaction(object):
     def __init__(self, tx_id):
         self.tx_id = tx_id
         self.state = const.READ
-        self.read_set = [[]]
+        self.read_set = {}
         self.write_set = [[]]
         self.barrier_set = []
 
         self.conflict = []
         
-    def read(self, dp, match, action):
-        self.read_set[self.barrier_count].append(
-            {
-                'dp': dp,
-                'match': match,
-                'action': action,
-            }
-        )
+    def read(self, key, value):
+        self.read_set[key] = value
     
     def write(self, dp, match, action):
         self.write_set[self.barrier_count].append(

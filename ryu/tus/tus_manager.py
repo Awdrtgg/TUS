@@ -63,23 +63,26 @@ class TusApp(app_manager.RyuApp):
                 if tx_instance.state == const.READ:
                     self.tx[tx_id].conflict.append(tx_idd)
 
-        #print(app_manager.TUS_SERVICE)
         return tx_id
 
 
-    def tx_read(self, tx_id, dp, match, action):
-        print('\ntx_read!' + '\n' + str(dp) + '\n' + str(match) + '\n' + str(action))
+    def tx_read(self, tx_id, match):
+        value = self.nib.read(match)
+        print('\ntx_read!' + '\n' + str(match) + '\n' + str(value))
+            
         self.log.log(
             LogItem(
                 timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state,
-                rw='r', dp=dp, match=match, action_or_stat=action
+                rw='r', match=match, action_or_stat=value
             )
         )
-        print('Log: ', LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state, rw='r', dp=dp, match=match, action_or_stat=action))
+        print('Log: ', LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state, rw='r', match=match, action_or_stat=value))
         
-        self.tx[tx_id].read(dp, match, action)
+        self.tx[tx_id].read(match, value)
+
 
     def tx_write(self, tx_id, dp, match, action):
+        self.tx[tx_id].write(self, dp, match, action)
         print('\ntx_write!' + '\n' + str(dp) + '\n' + str(match) + '\n' + str(action))
 
         self.log.log(
@@ -90,8 +93,6 @@ class TusApp(app_manager.RyuApp):
         )
         print('Log: ', LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state, rw='w', dp=dp, match=match, action_or_stat=action))
         
-        self.tx[tx_id].write(self, dp, match, action)
-
 
     def tx_commit(self, tx_id, volatile):
         print('\ntx_commit!' + '\n' + str(volatile))
@@ -103,7 +104,7 @@ class TusApp(app_manager.RyuApp):
         )
         print('Log: ', str(LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state,volatile=volatile)))
         
-        # do validation 1
+        ### do validation 1
         if volatile:
             print('Validation 1 failed')
             self.tx[tx_id].state = const.INACTIVE
@@ -114,7 +115,7 @@ class TusApp(app_manager.RyuApp):
             )
             print('Log: ', str(LogItem(timestamp=time.time(), tx_id=tx_id, tx_state=self.tx[tx_id].state)))
             return False
-        #
+        ###
 
         ### do validation 2
         for app_name, app in app_manager.TUS_SERVICE:

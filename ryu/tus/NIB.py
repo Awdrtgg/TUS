@@ -9,7 +9,7 @@ class NIB(tus_manager.TusApp):
     OFP_VERSIONS = [ofproto_v1_0.OFP_VERSION]
 
     def __init__(self, *args, **kwargs):
-        super(ISOtest1, self).__init__(*args, **kwargs)
+        super(NIB, self).__init__(*args, **kwargs)
 
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
     def flow_stats_reply_handler(self, ev):

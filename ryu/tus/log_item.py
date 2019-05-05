@@ -51,16 +51,18 @@ class LogItem():
             self.tx_state = const.READ
             if properties[2] == 'read':
                 self.rw = 'r'
+                temp = json.loads(properties[3])
+                self.match, self.action_or_stat = temp.popitems()
+                self.action_or_stat = properties[4]
             elif properties[2] == 'write':
                 self.rw = 'w'
-
-            temp_dp = json.loads(properties[3])
-            print('property[3]: ', properties[3])
-            print('temp_dp: ', temp_dp)
-            self.dp = self.dpset.get(int(temp_dp['id']))
-            if tuple(temp_dp['address']) != self.dp.address:
-                print(tuple(temp_dp['address']), self.dp.address)
-                print('Fatal Error: get wrong datapath!')
+                temp_dp = json.loads(properties[3])
+                self.dp = self.dpset.get(int(temp_dp['id']))
+                if tuple(temp_dp['address']) != self.dp.address:
+                    print('property[3]: ', properties[3])
+                    print('temp_dp: ', temp_dp)
+                    print(tuple(temp_dp['address']), self.dp.address)
+                    print('Fatal Error: get wrong datapath!\n')
             
             self.match = self.dp.ofproto_parser.OFPMatch(json.loads(properties[4]))
             # TODO
@@ -83,14 +85,16 @@ class LogItem():
             else:
                 if self.rw == 'r':
                     res += 'read'
+                    res += const.DIV
+                    res += str(json.dumps({self.match: self.action_or_stat}))
                 elif self.rw == 'w':
                     res += 'write'
-                res += const.DIV
-                res += str(json.dumps({'id': self.dp.id, 'address': self.dp.address}))
-                res += const.DIV
-                res += str(json.dumps(self.match.to_jsondict()))
-                res += const.DIV
-                res += str(json.dumps(self.action_or_stat))
+                    res += const.DIV
+                    res += str(json.dumps({'id': self.dp.id, 'address': self.dp.address}))
+                    res += const.DIV
+                    res += str(json.dumps(self.match.to_jsondict()))
+                    res += const.DIV
+                    res += str(json.dumps(self.action_or_stat))
                 
         elif self.tx_state == const.VALIDATION:
             res += 'VALIDATION' + const.DIV
