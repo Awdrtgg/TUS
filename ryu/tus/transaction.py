@@ -32,7 +32,7 @@ class Transaction(object):
         self.read_set[key] = value
     
     def write(self, dp, match, action):
-        self.write_set[self.barrier_count].append(
+        self.write_set[len(self.barrier_set)].append(
             {
                 'dp': dp,
                 'match': match,
@@ -46,8 +46,12 @@ class Transaction(object):
         self.barrier_set.append(dp)
 
     def execute(self):
-        for phase in range(len(self.barrier_set)):
+        print('Execute!')
+        print(self.write_set)
+        print(self.barrier_set)
+        for phase in range(len(self.barrier_set) + 1):
             for ac_write in self.write_set[phase]:
+                print('Do: ', ac_write)
                 # TODO 
                 # OFP v1.2
                 dp =  ac_write['dp']
@@ -58,19 +62,22 @@ class Transaction(object):
                         match=ac_write['match'], 
                         **ac_write['action']['kwargs'], 
                     )
-                    ac_write['dp'].send_msg(req)
+                    dp.send_msg(req)
                 elif ac_write['action']['name'] == 'OFPPortMod':
                     req = ofp_parser.OFPPortMod(
                         dp, 
                         **ac_write['action']['kwargs'],
                     )
+                    dp.send_msg(req)
                 elif ac_write['action']['name'] == 'OFPPacketOut':
                     req = ofp_parser.OFPPacketOut(
                         dp, 
                         **ac_write['action']['kwargs']
                     )
-            
-            dp = self.barrier_set[phase]
-            ofp_parser = dp.ofproto_parser
-            req = ofp_parser.OFPBarrierRequest(dp)
-            dp.send_msg(req)
+                    dp.send_msg(req)
+
+            if phase != len(self.barrier_set):
+                dp = self.barrier_set[phase]
+                ofp_parser = dp.ofproto_parser
+                req = ofp_parser.OFPBarrierRequest(dp)
+                dp.send_msg(req)

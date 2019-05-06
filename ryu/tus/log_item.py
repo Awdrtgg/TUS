@@ -3,6 +3,9 @@ import json
 
 from ryu.tus.const import const
 
+def MyDefault(obj):
+    return str(obj)
+
 class LogItem():
     # TODO
     # match & action
@@ -20,6 +23,7 @@ class LogItem():
         self.barrier = barrier
         self.dpset = dpset
 
+
     def from_line(self, line):
         properties = [l.strip() for l in line.split(const.DIV)]
         if len(properties) < 3:
@@ -32,43 +36,43 @@ class LogItem():
         self.barrier = False
         self.volatile = False
         self.rw = None
-        if len(properties) <= 4:
-            self.tx_state = properties[2]
-            if properties[2] == 'START':
-                self.tx_state = const.READ
-            elif properties[2] == 'VALIDATION':
-                self.tx_state = const.VALIDATION
-                if properties[3] == 'VOLATILE':
-                    self.volatile = True
-            elif properties[2] == 'WRITE':
-                self.tx_state = const.WRITE
-            elif properties[2] == 'INACTIVE':
-                self.tx_state = const.INACTIVE
-            elif properties[2] == 'BARRIER':
-                self.tx_state = const.READ
-                self.barrier = True
-        else:
+
+        if properties[2] == 'START':
             self.tx_state = const.READ
-            if properties[2] == 'read':
-                self.rw = 'r'
-                temp = json.loads(properties[3])
-                self.match, self.action_or_stat = temp.popitems()
-                self.action_or_stat = properties[4]
-            elif properties[2] == 'write':
-                self.rw = 'w'
-                temp_dp = json.loads(properties[3])
-                self.dp = self.dpset.get(int(temp_dp['id']))
-                if tuple(temp_dp['address']) != self.dp.address:
-                    print('property[3]: ', properties[3])
-                    print('temp_dp: ', temp_dp)
-                    print(tuple(temp_dp['address']), self.dp.address)
-                    print('Fatal Error: get wrong datapath!\n')
+        elif properties[2] == 'VALIDATION':
+            self.tx_state = const.VALIDATION
+            if properties[3] == 'VOLATILE':
+                self.volatile = True
+        elif properties[2] == 'WRITE':
+            self.tx_state = const.WRITE
+        elif properties[2] == 'INACTIVE':
+            self.tx_state = const.INACTIVE
+        elif properties[2] == 'BARRIER':
+            self.tx_state = const.READ
+            self.barrier = True
+        elif properties[2] == 'read':
+            self.tx_state = const.READ
+            self.rw = 'r'
+            temp = json.loads(properties[3])
+            self.match, self.action_or_stat = temp.popitem()
+        elif properties[2] == 'write':
+            self.tx_state = const.READ
+            self.rw = 'w'
+            temp_dp = json.loads(properties[3])
+            self.dp = self.dpset.get(int(temp_dp['id']))
+            #if tuple(temp_dp['address']) != self.dp.address:
+            #    print(tuple(temp_dp['address']), self.dp.address)
+            #    print('Fatal Error: get wrong datapath!\n')
             
-            self.match = self.dp.ofproto_parser.OFPMatch(json.loads(properties[4]))
+            if len(properties[4]) > 0:
+                self.match = self.dp.ofproto_parser.OFPMatch(json.loads(properties[4]))
+            else:
+                self.match = None
             # TODO
             self.action_or_stat = json.loads(properties[5])
         
         return self
+
 
     def __str__(self):
         res = ''
@@ -92,9 +96,10 @@ class LogItem():
                     res += const.DIV
                     res += str(json.dumps({'id': self.dp.id, 'address': self.dp.address}))
                     res += const.DIV
-                    res += str(json.dumps(self.match.to_jsondict()))
+                    if self.match:
+                        res += str(json.dumps(self.match.to_jsondict()))
                     res += const.DIV
-                    res += str(json.dumps(self.action_or_stat))
+                    res += str(json.dumps(self.action_or_stat, default=MyDefault))
                 
         elif self.tx_state == const.VALIDATION:
             res += 'VALIDATION' + const.DIV

@@ -2,6 +2,7 @@ import inspect
 #import funcsigs
 import fcntl
 import json
+import os
 
 from ryu.tus.const import const
 
@@ -29,6 +30,7 @@ def transactional_ex(fn):
         return ret
 
     return wrapper
+
 
 def transactional_sh(fn):
     def wrapper(*args, **kwargs):
@@ -79,6 +81,15 @@ class NIB(FileOp):
         return None
 
     @transactional_sh
+    def verify(self, old_dict):
+        data = json.load(self.fp)
+        for key, value in old_dict.items():
+            if key not in data or data[key] != value:
+                print('not match: ', key)
+                return False
+        return True
+
+    @transactional_sh
     def write(self, key, value):
         data = json.load(self.fp)
         data[key] = value
@@ -100,6 +111,7 @@ class Log(FileOp):
 
     @transactional_sh
     def log(self, Log, file_op='a+'):
+        print('Log: ' + str(log))
         self.fp.write(str(Log) + '\n')
 
     @transactional_sh
