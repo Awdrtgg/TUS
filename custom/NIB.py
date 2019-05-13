@@ -1,22 +1,18 @@
-from ryu.base import app_manager
 from ryu.tus import tus_manager
-from ryu.controller import ofp_event
-from ryu.controller.handler import MAIN_DISPATCHER
-from ryu.controller.handler import set_ev_cls
-from ryu.ofproto import ofproto_v1_0
-
-from operator import attrgetter
+from ryu.ofproto import ofproto_v1_3
 
 from ryu.app import simple_switch_13
 from ryu.controller import ofp_event
-from ryu.controller.handler import MAIN_DISPATCHER, DEAD_DISPATCHER
+from ryu.controller.handler import MAIN_DISPATCHER, DEAD_DISPATCHER, CONFIG_DISPATCHER
 from ryu.controller.handler import set_ev_cls
 from ryu.lib import hub
 
 import time
+from operator import attrgetter
+
 
 class NIB(tus_manager.TusApp):
-    OFP_VERSIONS = [ofproto_v1_0.OFP_VERSION]
+    OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
     '''
 
     def __init__(self, *args, **kwargs):
@@ -46,18 +42,54 @@ class NIB(tus_manager.TusApp):
 
     def __init__(self, *args, **kwargs):
         super(NIB, self).__init__(*args, **kwargs)
-        print(self.dpset)
-        print(self.dpset.get_all())
-        print(self.dpset.get(1))
+        #print(self.dpset)
+        #print(self.dpset.get_all())
+        #print(self.dpset.get(1))
         self.datapaths = {}
-        self.recov_thread = hub.spawn(self._recov)
+        #self.recov_thread = hub.spawn(self._recov)
         self.monitor_thread = hub.spawn(self._monitor)
 
     def _recov(self):
         hub.sleep(5)
-        print(self.dpset.get_all())
-        print(self.dpset.get(1))
+        #print(self.dpset.get_all())
+        #print(self.dpset.get(1))
         self.failure_recov()
+
+
+    @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
+    def switch_features_handler(self, ev):
+        datapath = ev.msg.datapath
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        # install table-miss flow entry
+        #
+        # We specify NO BUFFER to max_len of the output action due to
+        # OVS bug. At this moment, if we specify a lesser number, e.g.,
+        # 128, OVS will send Packet-In with invalid buffer_id and
+        # truncated packet data. In that case, we cannot output packets
+        # correctly.  The bug has been fixed in OVS v2.1.0.
+        match = parser.OFPMatch()
+        actions = [parser.OFPActionOutput(ofproto.OFPP_CONTROLLER,
+                                          ofproto.OFPCML_NO_BUFFER)]
+        self.add_flow(datapath, 0, match, actions, ofproto.OFPFC_ADD)
+
+
+    def add_flow(self, datapath, priority, match, actions, buffer_id=None):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        inst = [parser.OFPInstructionActions(ofproto.OFPIT_APPLY_ACTIONS,
+                                             actions)]
+        if buffer_id:
+            mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id,
+                                    priority=priority, match=match,
+                                    instructions=inst)
+        else:
+            mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
+                                    match=match, instructions=inst)
+        datapath.send_msg(mod)
+
 
     @set_ev_cls(ofp_event.EventOFPStateChange,
                 [MAIN_DISPATCHER, DEAD_DISPATCHER])
@@ -72,14 +104,14 @@ class NIB(tus_manager.TusApp):
                 self.logger.debug('unregister datapath: %016x', datapath.id)
                 del self.datapaths[datapath.id]
         
-        print(self.dpset.get_all())
-        print(self.dpset.get(1))
+        #print(self.dpset.get_all())
+        #print(self.dpset.get(1))
 
     def _monitor(self):
         while True:
             for dp in self.datapaths.values():
                 self._request_stats(dp)
-            hub.sleep(10)
+            hub.sleep(5)
 
     def _request_stats(self, datapath):
         self.logger.debug('send stats request: %016x', datapath.id)
@@ -87,13 +119,14 @@ class NIB(tus_manager.TusApp):
         parser = datapath.ofproto_parser
         match = parser.OFPMatch()
         table_id = 0xff
-        out_port = ofproto.OFPP_NONE
+        out_port = ofproto.OFPP_ANY
+        #out_port = ofproto.OFPP_NONE
 
-        req = parser.OFPFlowStatsRequest(datapath, 0, match, table_id, out_port)
-        datapath.send_msg(req)
+        #req = parser.OFPFlowStatsRequest(datapath, 0, match, table_id, out_port)
+        #datapath.send_msg(req)
 
-        #req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_ANY)
-        req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_NONE)
+        req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_ANY)
+        #req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_NONE)
         datapath.send_msg(req)
     '''
     @set_ev_cls(ofp_event.EventOFPFlowStatsReply, MAIN_DISPATCHER)
@@ -142,12 +175,12 @@ class NIB(tus_manager.TusApp):
     def _port_stats_reply_handler(self, ev):
         body = ev.msg.body
 
-        self.logger.info('datapath         port     '
-                         'rx-pkts  rx-bytes rx-error '
-                         'tx-pkts  tx-bytes tx-error')
-        self.logger.info('---------------- -------- '
-                         '-------- -------- -------- '
-                         '-------- -------- --------')
+        #self.logger.info('datapath         port     '
+        #                 'rx-pkts  rx-bytes rx-error '
+        #                 'tx-pkts  tx-bytes tx-error')
+        #self.logger.info('---------------- -------- '
+        #                 '-------- -------- -------- '
+        #                 '-------- -------- --------')
         for stat in sorted(body, key=attrgetter('port_no')):
             #self.logger.info('%016x %8x %8d %8d %8d %8d %8d %8d',
             #                 ev.msg.datapath.id, stat.port_no,

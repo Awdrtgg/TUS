@@ -12,7 +12,7 @@ def transactional_ex(fn):
         bound_args.apply_defaults()
         #bound_args = funcsigs.signature(fn).bind(*args, **kwargs)
         target_args = dict(bound_args.arguments)
-        print(target_args)
+        #print(target_args)
         cls_obj = target_args['self']
         lock_len, lock_start, lock_whence = 0, 0, 0
         if 'lock_len' in target_args: lock_len = target_args['lock_len']
@@ -38,7 +38,7 @@ def transactional_sh(fn):
         bound_args.apply_defaults()
         #bound_args = funcsigs.signature(fn).bind(*args, **kwargs)
         target_args = dict(bound_args.arguments)
-        print(target_args)
+        #print(target_args)
         cls_obj = target_args['self']
         lock_len, lock_start, lock_whence = 0, 0, 0
         if 'lock_len' in target_args: lock_len = target_args['lock_len']
@@ -70,6 +70,7 @@ class FileOp(object):
 class NIB(FileOp):
     def __init__(self, filename="nib.json"):
         super(NIB, self).__init__(filename)
+        self.data = {}
 
     @transactional_sh
     def read(self, key):
@@ -89,20 +90,26 @@ class NIB(FileOp):
                 return False
         return True
 
-    @transactional_sh
     def write(self, key, value):
+        self.fp = open(self.filename, 'r')
         data = json.load(self.fp)
+        self.fp.close()
+
         data[key] = value
-        self.fp.seek(0, os.SEEK_SET)
+        self.fp = open(self.filename, 'w')
         json.dump(data, self.fp)
+        self.fp.close()
     
-    @transactional_sh
     def update(self, update_dict):
+        self.fp = open(self.filename, 'r')
         data = json.load(self.fp)
+        self.fp.close()
+
         for key, value in update_dict.items():
             data[key] = value
-        self.fp.seek(0, os.SEEK_SET)
+        self.fp = open(self.filename, 'w')
         json.dump(data, self.fp)
+        self.fp.close()
 
 
 class Log(FileOp):
@@ -111,7 +118,7 @@ class Log(FileOp):
 
     @transactional_sh
     def log(self, Log, file_op='a+'):
-        print('Log: ' + str(log))
+        print('Log: ' + str(Log))
         self.fp.write(str(Log) + '\n')
 
     @transactional_sh

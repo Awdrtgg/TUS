@@ -103,7 +103,7 @@ class TusApp(app_manager.RyuApp):
         ### do validation 1
         if volatile:
             vld = self.nib.verify(self.tx[tx_id].read_set)
-            if vld:
+            if not vld:
                 print('Validation 1 failed')
                 self.tx[tx_id].state = const.INACTIVE
                 self.log.log(

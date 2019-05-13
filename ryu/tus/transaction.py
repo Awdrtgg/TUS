@@ -1,5 +1,6 @@
 from ryu.tus.const import const
-
+from random import shuffle, random
+import time
 
 def intersect_set(set1, set2):
     # TODO
@@ -41,7 +42,6 @@ class Transaction(object):
         )
     
     def barrier(self, dp):
-        self.read_set.append([])
         self.write_set.append([])
         self.barrier_set.append(dp)
 
@@ -50,10 +50,12 @@ class Transaction(object):
         print(self.write_set)
         print(self.barrier_set)
         for phase in range(len(self.barrier_set) + 1):
+            shuffle(self.write_set[phase])
             for ac_write in self.write_set[phase]:
                 print('Do: ', ac_write)
                 # TODO 
                 # OFP v1.2
+                time.sleep(random() / 100.0)
                 dp =  ac_write['dp']
                 ofp_parser = dp.ofproto_parser
                 if ac_write['action']['name'] == 'OFPFlowMod':
@@ -81,3 +83,11 @@ class Transaction(object):
                 ofp_parser = dp.ofproto_parser
                 req = ofp_parser.OFPBarrierRequest(dp)
                 dp.send_msg(req)
+'''
+Todo: 
+1. OFPBarrierRequest semantics, references
+2. Merge NIB
+3. Action, implement as you need
+4. Why does RYU not support write then read? Read is asynchronized, implementation is hard.
+5. More scenario: reproduce existing ones, read references and find more.
+'''
